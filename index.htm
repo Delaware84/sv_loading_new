@@ -1,0 +1,376 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0038)https://stammer2020.nekoweb.org/2.html -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+
+<title>lol-city</title>
+<link href="../css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+@font-face{
+  font-family:'JetBrains Mono';
+  src:url('JetBrainsMono-VariableFont_wght.ttf') format('woff2');
+  font-weight:400 500;
+}
+
+@font-face{
+  font-family:'Space Grotesk';
+  src:url('SpaceGrotesk-VariableFont_wght.ttf') format('woff2');
+  font-weight:400 700;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0a0e17;
+  font-family: "JetBrains Mono";
+  overflow: hidden;
+}
+
+.bg-stage {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.shot{
+  position:absolute;
+  top:0; left:0; right:0; bottom:0;
+  opacity:0;
+  background-size:cover;
+  background-position:center center;
+  filter:grayscale(35%) contrast(1.05);
+  transform:scale(1);
+  animation:cycle 20s infinite, zoomin 20s infinite;
+}
+
+@keyframes cycle{
+  0%{ opacity:0; }
+  3%{ opacity:1; }
+  25%{ opacity:1; }
+  28%{ opacity:0; }
+  100%{ opacity:0; }
+}
+
+@keyframes zoomin{
+  0%{ transform:scale(1); }
+  28%{ transform:scale(1.04); }
+  100%{ transform:scale(1.04); }
+}
+
+.grain{
+  position:absolute;
+  top:0; left:0; right:0; bottom:0;
+  z-index:1;
+  pointer-events:none;
+  opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.vignette{
+  position:absolute;
+  top:0; left:0; right:0; bottom:0;
+  z-index:1;
+  pointer-events:none;
+  background:radial-gradient(140% 100% at 50% 100%, rgba(10,14,23,0) 0%, rgba(10,14,23,.55) 55%, rgba(10,14,23,.95) 100%);
+}
+
+.center-wrap {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 4;
+}
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.city-dash {
+  font-size: 110px;
+  font-weight: 700;
+  color: #3F5391;
+  line-height: 1;
+  font-family: "Press Start 2P", monospace;
+}
+
+.city-text {
+  font-size: 110px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 2px;
+  line-height: 1;
+  font-family: "Press Start 2P", monospace;
+}
+
+.authors {
+  margin-top: 6px;
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: #c9c9c9;
+  font-weight: bold;
+}
+
+.skip-line {
+  margin-top: 15px;
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: #f5f5f5;
+  font-weight: bold;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+.skip-line.fade-out {
+  opacity: 0;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 36px;
+  left: 44px;
+  right: 44px;
+  z-index: 4;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stage-label {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: .5px;
+  color: #8A809C;
+  margin-bottom: 10px;
+}
+
+.bar-track {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  background: #222B3F;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.bar-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 20%;
+  background: #3F5391;
+  animation: sway 1.6s ease-in-out infinite;
+}
+
+@keyframes sway {
+  0%   { left: -50%; opacity: 0; }
+  8%   { opacity: 1; }
+  42%  { opacity: 1; }
+  49%  { left: 96%; opacity: 0; }
+  50%  { left: 100%; opacity: 0; }
+  58%  { opacity: 1; }
+  92%  { opacity: 1; }
+  99%  { left: -24%; opacity: 0; }
+  100% { left: -50%; opacity: 0; }
+}
+
+.status {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #8A809C;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #8C9DD6;
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0.3; transform: scale(0.8); }
+}
+</style>
+</head>
+<body>
+
+<audio id="bgMusic">
+  <source id="musicSrc" src="music1.mp3" type="audio/mpeg">
+</audio>
+
+<div class="bg-stage" id="bgStage"></div>
+
+<div class="grain"></div>
+<div class="vignette"></div>
+
+<div class="center-wrap">
+  <div class="logo-row">
+    <div class="city-text"><span class="city-dash">lol</span>-city</div>
+  </div>
+  <div class="authors">by lolcat1 &amp; 4yTTaTT</div>
+  <div class="skip-line" id="tip-line">Наш дискорд - discord.com/invite/lolcity</div>
+</div>
+
+<div class="bottom">
+  <div class="bar-track">
+    <div class="bar-fill" id="bar"></div>
+  </div>
+  
+  <div class="meta-row">
+    <div class="stage-label" id="stage">загрузка ресурсов...</div>
+    <div class="stage-label" id="files-info"></div>
+  </div>
+</div>
+
+<script>
+var audio = document.getElementById('bgMusic');
+var musicSrc = document.getElementById('musicSrc');
+var playlist = ['music1.mp3', 'music2.mp3', 'music3.mp3'];
+var currentTrack = 0;
+audio.volume = 1;
+
+function playTrack() {
+  musicSrc.src = playlist[currentTrack];
+  audio.load();
+  audio.play();
+}
+
+audio.addEventListener('ended', function() {
+  currentTrack = (currentTrack + 1) % playlist.length;
+  playTrack();
+});
+
+try { playTrack(); } catch(e) {}
+
+var images = ['bg1.png','bg2.png','bg3.jpg','bg4.jpeg','bg5.png','bg6.png','bg7.png','bg8.png','bg9.png','bg10.png','bg11.png','bg12.png','bg13.png','bg14.png'];
+var bgStage = document.getElementById('bgStage');
+var cycleDuration = 20000;
+var perImage = cycleDuration / images.length;
+
+for (var i = 0; i < images.length; i++) {
+  (function(i) {
+    var el = document.createElement('div');
+    el.className = 'shot';
+    el.style.backgroundImage = 'url(' + images[i] + ')';
+    el.style.animationDelay = (i * perImage) + 'ms';
+    el.style.animation = 'cycle ' + cycleDuration + 'ms infinite ' + (i * perImage) + 'ms, zoomin ' + cycleDuration + 'ms infinite ' + (i * perImage) + 'ms';
+    bgStage.appendChild(el);
+  })(i);
+}
+
+var stages = [
+  "инициализация...",
+  "проверка кэша...",
+  "загрузка ресурсов...",
+  "подготовка данных..."
+];
+
+var tips = [
+  "Читаешь - вся семья на троне.",
+  "Еще чуть чуть..",
+  "Наш дискорд - discord.com/invite/lolcity",
+  "пукай кетпчунезом и кричи какой то ебень",
+];
+
+var tipEl = document.getElementById('tip-line');
+var lastIndex = -1;
+
+function showNextTip() {
+  tipEl.classList.add('fade-out');
+  setTimeout(function() {
+    var idx;
+    do {
+      idx = Math.floor(Math.random() * tips.length);
+    } while (idx === lastIndex && tips.length > 1);
+    lastIndex = idx;
+    tipEl.textContent = tips[idx];
+    tipEl.classList.remove('fade-out');
+  }, 600);
+}
+
+setInterval(showNextTip, 4500);
+
+var bar = document.getElementById('bar');
+var stageEl = document.getElementById('stage');
+var statusEl = document.getElementById('status-text');
+var filesInfoEl = document.getElementById('files-info');
+
+var stageIndex = 0;
+var gotRealData = false;
+
+var demoInterval = setInterval(function(){
+  if (stageEl) {
+    stageIndex = (stageIndex + 1) % stages.length;
+    stageEl.textContent = stages[stageIndex];
+  }
+}, 2200);
+
+function gotData(){
+  if(gotRealData) return;
+  gotRealData = true;
+  clearInterval(demoInterval);
+}
+
+var filesTotal = 0;
+var filesNeeded = 0;
+
+function updateProgress(){
+  if(filesTotal <= 0) return;
+  var downloaded = Math.max(0, filesTotal - filesNeeded);
+  if (filesInfoEl) {
+    filesInfoEl.textContent = downloaded + ' / ' + filesTotal + ' файлов';
+  }
+}
+
+window.GameDetails = function(servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, language){
+  gotData();
+  if (stageEl) stageEl.textContent = 'подключение к ' + servername;
+  try { playTrack(); } catch(e) {}
+};
+
+window.SetFilesTotal = function(total){
+  gotData();
+  filesTotal = total;
+  filesNeeded = total;
+  updateProgress();
+};
+
+window.DownloadingFile = function(fileName){
+  gotData();
+  if (stageEl) stageEl.textContent = 'файл: ' + fileName;
+};
+
+window.SetStatusChanged = function(status){
+  gotData();
+  if (statusEl) statusEl.textContent = status;
+};
+
+window.SetFilesNeeded = function(needed){
+  gotData();
+  filesNeeded = needed;
+  updateProgress();
+};
+</script>
+
+
+</body></html>
