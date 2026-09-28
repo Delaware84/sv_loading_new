@@ -247,7 +247,7 @@ var audio = document.getElementById('bgMusic');
 var musicSrc = document.getElementById('musicSrc');
 var playlist = ['music1.mp3', 'music2.mp3', 'music3.mp3'];
 var currentTrack = 0;
-audio.volume = 1;
+audio.volume = 0,5;
 
 function playTrack() {
   musicSrc.src = playlist[currentTrack];
